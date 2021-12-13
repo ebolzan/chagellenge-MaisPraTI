@@ -5,11 +5,19 @@ import java.util.Objects;
 
 public class Person {
 
-    private String name;
-    private String phone;
-    private Date birthDate;
-    private Date insertDate;
-    private Date lastChangeDate;
+    protected String name;
+    protected String phone;
+    protected Date birthDate;
+    protected Date insertDate;
+    protected Date lastChangeDate;
+
+    public Person(String name, String phone, Date birthDate, Date insertDate, Date lastChangeDate) {
+        this.name = name;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.insertDate = insertDate;
+        this.lastChangeDate = lastChangeDate;
+    }
 
     public String getName() {
         return name;
