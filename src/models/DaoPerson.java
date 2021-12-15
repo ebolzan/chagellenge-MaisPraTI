@@ -23,9 +23,11 @@ public class DaoPerson {
 
     public void listAllPerson()
     {
-        for (Person p: this.listPerson
-             ) {
-            System.out.println(p.toString());
-        }
+
+        this.listPerson.forEach(n -> {
+            int i = 0;
+            System.out.println(i+"---"+n);
+            i++;
+        });
     }
 }
