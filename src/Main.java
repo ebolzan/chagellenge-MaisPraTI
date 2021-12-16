@@ -73,7 +73,20 @@ public class Main {
 
                 case 2:
                     daoPerson.listAllPerson();
-                    System.out.println("Type Person name for delete");
+                    System.out.println("Type NUMBER Person name for delete:");
+
+                    try {
+                        int index = Integer.parseInt(br.readLine());
+                       Person p =  daoPerson.deletePerson(index);
+
+                       System.out.println(p.getName()+ " deleted with success!");
+
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
                     menu = 0;
                     break;
 
