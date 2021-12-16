@@ -16,16 +16,23 @@ public class DaoPerson {
        return this.listPerson.add(p);
     }
 
-    public Boolean deletePerson(Person p)
+    public Person deletePerson(int index)
     {
-        return this.listPerson.remove(p);
+        return this.listPerson.remove(index);
+    }
+
+    public Person getPerson(int index)
+    {
+            return this.listPerson.get(index);
     }
 
     public void listAllPerson()
     {
-        for (Person p: this.listPerson
-             ) {
-            System.out.println(p.toString());
-        }
+
+        this.listPerson.forEach(n -> {
+            int i = 0;
+            System.out.println(i+"---"+n);
+            i++;
+        });
     }
 }
