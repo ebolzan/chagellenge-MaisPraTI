@@ -23,7 +23,7 @@ public class DaoPerson {
 
     public Person getPerson(int index)
     {
-        return this.listPerson.get(index);
+            return this.listPerson.get(index);
     }
 
     public void listAllPerson()
