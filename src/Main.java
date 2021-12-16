@@ -44,7 +44,7 @@ public class Main {
 
                         Date dateInsertModified = new Date();
 
-                        System.out.println("Have final Grade? (y:n)");
+                        System.out.println("Does he have final Grade? (y:n)");
                         String haveGrade = br.readLine();
 
                         if(haveGrade.contains("y"))
@@ -62,7 +62,7 @@ public class Main {
                             daoPerson.insertPerson(person);
                         }
 
-                        menu = 2;
+                        menu = 3;
                     }
                     catch (Exception e)
                     {
@@ -77,10 +77,9 @@ public class Main {
 
                     try {
                         int index = Integer.parseInt(br.readLine());
-                       Person p =  daoPerson.deletePerson(index);
+                        Person p =  daoPerson.deletePerson(index);
 
-                       System.out.println(p.getName()+ " deleted with success!");
-
+                        System.out.println(p.getName()+ " deleted with success!");
                     }
                     catch (Exception e)
                     {
@@ -89,6 +88,49 @@ public class Main {
 
                     menu = 0;
                     break;
+
+                case 3:
+                    daoPerson.listAllPerson();
+                    System.out.println("Type NUMBER Person name for update:");
+
+                    try
+                    {
+                        int index = Integer.parseInt(br.readLine());
+                        Person p =  daoPerson.getPerson(index);
+
+
+                        String choose = br.readLine();
+
+                        do {
+                            System.out.print("1- edit name 2 - edit phone 3 -edit birthday");
+
+                            if(p.getClass().getSimpleName().contains("Student"))
+                            {
+                                System.out.println("4 - edit grade final");
+                            }
+                            //to do: make code update person or student
+                            System.out.println("Do you want update another field? (y/n)");
+                            choose = br.readLine();
+                        }while(choose.contains("y"));
+
+
+
+
+                    } catch (IndexOutOfBoundsException ib)
+                    {
+                        System.out.println("Type index valid :(");
+                    } catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    break;
+
+                case 4:
+                    daoPerson.listAllPerson();
+                    break;
+
+
 
                 default:
                     System.out.println("What is next option:");
