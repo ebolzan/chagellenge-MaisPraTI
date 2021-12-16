@@ -15,12 +15,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         DaoPerson daoPerson = new DaoPerson();
 
-        System.out.println("----------Insert Person or Student----------");
-        System.out.println("1 - Insert Person or Student");
-        System.out.println("2 - Delete Person or Student");
-        System.out.println("3 - Update Person or Student");
-        System.out.println("4 - List all Person or Student");
-        System.out.println("0 - Exit");
+        mainMenu();
 
         String option = "1";
         int menu = Integer.parseInt(option);
@@ -142,5 +137,14 @@ public class Main {
         }
 
 
+    }
+
+    private static void mainMenu() {
+        System.out.println("----------Insert Person or Student----------");
+        System.out.println("1 - Insert Person or Student");
+        System.out.println("2 - Delete Person or Student");
+        System.out.println("3 - Update Person or Student");
+        System.out.println("4 - List all Person or Student");
+        System.out.println("0 - Exit");
     }
 }
