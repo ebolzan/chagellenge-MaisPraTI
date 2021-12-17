@@ -18,119 +18,119 @@ public class Main {
         DaoPerson daoPerson = new DaoPerson();
 
         mainMenu();
+        System.out.println("What is option:");
 
-        String option = "1";
-        int menu = Integer.parseInt(option);
-
-        while (menu != 0)
+        int menu = 0;
+        do
         {
-            switch (menu)
-            {
-                case 1:
-                    try {
-                        System.out.println("Enter Name:");
-                        String name = br.readLine();
+            try {
+                menu = Integer.parseInt(br.readLine());
 
-                        System.out.println("Enter Phone:");
-                        String phone = br.readLine();
+                switch (menu)
+                {
+                    case 1:
+                        try {
+                            System.out.println("Enter Name:");
+                            String name = br.readLine();
 
-                        System.out.println("Birthday: ex dd-mm-yyyy");
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                        String birthDay = br.readLine();
-                        Date date = formatter.parse(birthDay);
+                            System.out.println("Enter Phone:");
+                            String phone = br.readLine();
 
-                        Date dateInsertModified = new Date();
+                            System.out.println("Birthday: ex dd-mm-yyyy");
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                            String birthDay = br.readLine();
+                            Date date = formatter.parse(birthDay);
 
-                        System.out.println("Does he have final Grade? (y:n)");
-                        String haveGrade = br.readLine();
+                            Date dateInsertModified = new Date();
 
-                        if(haveGrade.contains("y"))
-                        {
-                            System.out.println("Enter grade");
-                            float grade = Float.parseFloat(br.readLine());
+                            System.out.println("Does he have final Grade? (y:n)");
+                            String haveGrade = br.readLine();
 
-                            Student student = new Student(name, phone, date, dateInsertModified, dateInsertModified, grade);
-                            student.toString();
-                            daoPerson.insertPerson(student);
-                        }
-                        else
-                        {
-                            Person person = new Person(name, phone, date, dateInsertModified, dateInsertModified);
-                            daoPerson.insertPerson(person);
-                        }
-
-                        menu = 3;
-                    }
-                    catch (Exception e)
-                    {
-                        e.getStackTrace();
-                    }
-
-                    break;
-
-                case 2:
-                    daoPerson.listAllPerson();
-                    System.out.println("Type NUMBER Person name for delete:");
-
-                    try {
-                        int index = Integer.parseInt(br.readLine());
-                        Person p =  daoPerson.deletePerson(index);
-
-                        System.out.println(p.getName()+ " deleted with success!");
-                    }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-
-                    menu = 0;
-                    break;
-
-                case 3:
-                    daoPerson.listAllPerson();
-                    System.out.println("Type NUMBER Person name for update:");
-
-                    try
-                    {
-                        int index = Integer.parseInt(br.readLine());
-                        Person p =  daoPerson.getPerson(index);
-                        String choose;
-
-                        do {
-                            System.out.print("1- Edit name 2 - Edit phone 3 - Edit birthday");
-
-                            if(p.getClass().getSimpleName().contains("Student"))
+                            if(haveGrade.contains("y"))
                             {
-                                System.out.println(" 4 - Edit grade final");
+                                System.out.println("Enter grade");
+                                float grade = Float.parseFloat(br.readLine());
+
+                                Student student = new Student(name, phone, date, dateInsertModified, dateInsertModified, grade);
+                                student.toString();
+                                daoPerson.insertPerson(student);
                             }
+                            else
+                            {
+                                Person person = new Person(name, phone, date, dateInsertModified, dateInsertModified);
+                                daoPerson.insertPerson(person);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            e.getStackTrace();
+                        }
+                        break;
 
-                            int editableField = Integer.parseInt(br.readLine());
-                            updatePerson(editableField, p);
+                    case 2:
+                        daoPerson.listAllPerson();
+                        System.out.println("Type NUMBER Person name for delete:");
 
-                            System.out.println("Do you want update another field? (y/n)");
-                            choose = br.readLine();
-                        }while(choose.contains("y"));
+                        try {
+                            int index = Integer.parseInt(br.readLine());
+                            Person p =  daoPerson.deletePerson(index);
 
-                    } catch (IndexOutOfBoundsException ib)
-                    {
-                        System.out.println("Type index valid :(");
-                    } catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
+                            System.out.println(p.getName()+ " deleted with success!");
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
 
-                    break;
+                    case 3:
+                        daoPerson.listAllPerson();
+                        System.out.println("Type NUMBER Person name for update:");
 
-                case 4:
-                    daoPerson.listAllPerson();
-                    break;
+                        try
+                        {
+                            int index = Integer.parseInt(br.readLine());
+                            Person p =  daoPerson.getPerson(index);
+                            String choose;
 
-                default:
-                    System.out.println("What is next option:");
-                    menu = 3;
+                            do {
+                                System.out.print("1- Edit name 2 - Edit phone 3 - Edit birthday");
+
+                                if(p.getClass().getSimpleName().contains("Student"))
+                                {
+                                    System.out.println(" 4 - Edit grade final");
+                                }
+
+                                int editableField = Integer.parseInt(br.readLine());
+                                updatePerson(editableField, p);
+
+                                System.out.println("Do you want update another field? (y/n)");
+                                choose = br.readLine();
+                            }while(choose.contains("y"));
+
+                        } catch (IndexOutOfBoundsException ib)
+                        {
+                            System.out.println("Type index valid :(");
+                        } catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case 4:
+                        daoPerson.listAllPerson();
+                        break;
+
+                    default:
+                        System.out.println("What is next option:");
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
 
-        }
+        }while (menu != 0);
     }
 
     private static void mainMenu() {
@@ -175,6 +175,5 @@ public class Main {
             default:
                 p.setLastChangeDate(new Date());
         }
-
     }
 }
