@@ -3,7 +3,9 @@ import models.Person;
 import models.Student;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -92,24 +94,22 @@ public class Main {
                     {
                         int index = Integer.parseInt(br.readLine());
                         Person p =  daoPerson.getPerson(index);
-
-
-                        String choose = br.readLine();
+                        String choose;
 
                         do {
-                            System.out.print("1- edit name 2 - edit phone 3 -edit birthday");
+                            System.out.print("1- Edit name 2 - Edit phone 3 - Edit birthday");
 
                             if(p.getClass().getSimpleName().contains("Student"))
                             {
-                                System.out.println("4 - edit grade final");
+                                System.out.println(" 4 - Edit grade final");
                             }
-                            //to do: make code update person or student
+
+                            int editableField = Integer.parseInt(br.readLine());
+                            updatePerson(editableField, p);
+
                             System.out.println("Do you want update another field? (y/n)");
                             choose = br.readLine();
                         }while(choose.contains("y"));
-
-
-
 
                     } catch (IndexOutOfBoundsException ib)
                     {
@@ -125,18 +125,12 @@ public class Main {
                     daoPerson.listAllPerson();
                     break;
 
-
-
                 default:
                     System.out.println("What is next option:");
                     menu = 3;
             }
 
-         //   menu = 2;
-
         }
-
-
     }
 
     private static void mainMenu() {
@@ -146,5 +140,41 @@ public class Main {
         System.out.println("3 - Update Person or Student");
         System.out.println("4 - List all Person or Student");
         System.out.println("0 - Exit");
+    }
+
+    private static void updatePerson(int idField, Person p) throws IOException, IOException, ParseException {
+        Scanner in = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        switch (idField){
+            case 1:
+                System.out.println("Type new name:");
+                String name = br.readLine();
+                p.setName(name);
+                break;
+            case 2:
+                System.out.println("Type new phone:");
+                String phone = br.readLine();
+                p.setPhone(phone);
+                break;
+            case 3:
+                System.out.println("Type new birthday (dd-mm-yyyy):");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                String birthDay = br.readLine();
+                Date date = formatter.parse(birthDay);
+                p.setBirthDate(date);
+                break;
+            case 4:
+                System.out.println("Type new grade final:");
+                Float grade = Float.parseFloat(br.readLine());
+
+                if(p instanceof Student){
+                    ((Student)p).setFinalGrade(grade);
+                }
+                break;
+            default:
+                p.setLastChangeDate(new Date());
+        }
+
     }
 }
