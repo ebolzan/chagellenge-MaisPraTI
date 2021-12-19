@@ -28,11 +28,17 @@ public class DaoPerson {
 
     public void listAllPerson()
     {
+        if(this.listPerson.isEmpty())
+        {
+            System.out.println("D'ont exists nothing person's save in database");
+            return;
+        }
 
-        this.listPerson.forEach(n -> {
-            int i = 0;
-            System.out.println(i+"---"+n);
-            i++;
-        });
+        int it = 0;
+        for(Person p: this.listPerson)
+        {
+            System.out.println(it+"--"+p);
+            it++;
+        }
     }
 }
