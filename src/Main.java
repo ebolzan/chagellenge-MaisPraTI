@@ -52,13 +52,16 @@ public class Main {
                                 float grade = Float.parseFloat(br.readLine());
 
                                 Student student = new Student(name, phone, date, dateInsertModified, dateInsertModified, grade);
-                                student.toString();
+                                System.out.println(student.toString());
                                 daoPerson.insertPerson(student);
+                                System.out.println("Student saved with success!");
                             }
                             else
                             {
                                 Person person = new Person(name, phone, date, dateInsertModified, dateInsertModified);
+                                System.out.println(person.toString());
                                 daoPerson.insertPerson(person);
+                                System.out.println("Person saved with success!");
                             }
                         }
                         catch (Exception e)
@@ -129,7 +132,7 @@ public class Main {
             {
                 e.printStackTrace();
             }
-
+        mainMenu();
         }while (menu != 0);
     }
 
