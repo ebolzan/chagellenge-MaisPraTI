@@ -26,6 +26,10 @@ public class DaoPerson {
             return this.listPerson.get(index);
     }
 
+    public ArrayList<Person> getListPerson() {
+        return listPerson;
+    }
+
     public void listAllPerson()
     {
         if(this.listPerson.isEmpty())
