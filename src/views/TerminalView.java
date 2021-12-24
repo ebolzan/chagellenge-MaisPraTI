@@ -78,23 +78,13 @@ public class TerminalView {
                 System.out.println("Enter grade");
                 float grade = Float.parseFloat(this.bufferedReader.readLine());
 
-                //todo: controller function create person
                 this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified, grade);
-               /* Student student = new Student(name, phone, date, dateInsertModified, dateInsertModified, grade);
-                System.out.println(student.toString());
-                daoPerson.insertPerson(student);
-                System.out.println("Student saved with success!");*/
+                System.out.println("Student saved with success!");
             }
             else
             {
-                //todo: controller function create Student
                 this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified);
-
-
-               /* Person person = new Person(name, phone, date, dateInsertModified, dateInsertModified);
-                System.out.println(person.toString());
-                daoPerson.insertPerson(person);
-                System.out.println("Person saved with success!");*/
+                System.out.println("Person saved with success!");
             }
         }
         catch (Exception e)
@@ -123,17 +113,26 @@ public class TerminalView {
     {
         this.listAllPerson(p);
 
+        if(p.getListPerson().isEmpty())
+            return 1;
+
         System.out.println("Choose index option for delete:");
 
         try {
             String opt = this.bufferedReader.readLine();
+
+            if(this.personController.deletePerson(Integer.parseInt(opt)))
+            {
+                return 1;
+            }
+
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
 
-        //todo: function controller for delete
+
         return 0;
     }
 
@@ -151,14 +150,13 @@ public class TerminalView {
 
             if(p.getPerson(index).getClass().getSimpleName().contains("Student"))
             {
-                System.out.print("4 - Grade Final");
+                System.out.print(" 4 - Grade Final");
             }
 
             int editField = Integer.parseInt(this.bufferedReader.readLine());
-
+            System.out.println("New value:");
             String newValue = this.bufferedReader.readLine();
-
-            //todo: get connstrutor function update function(editField, newValue);
+            this.personController.updatePerson(index, editField, newValue);
 
         }
         catch (Exception e)
