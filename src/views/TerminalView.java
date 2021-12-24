@@ -1,5 +1,6 @@
 package views;
 
+import controllers.PersonController;
 import models.DaoPerson;
 import models.Person;
 
@@ -11,12 +12,22 @@ import java.util.Scanner;
 
 public class TerminalView {
 
+    private PersonController personController;
+
     private BufferedReader bufferedReader;
 
     public TerminalView()
     {
         Scanner in = new Scanner(System.in);
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    public PersonController getPersonController() {
+        return personController;
+    }
+
+    public void setPersonController(PersonController personController) {
+        this.personController = personController;
     }
 
     public int mainMenu()
@@ -68,6 +79,7 @@ public class TerminalView {
                 float grade = Float.parseFloat(this.bufferedReader.readLine());
 
                 //todo: controller function create person
+                this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified, grade);
                /* Student student = new Student(name, phone, date, dateInsertModified, dateInsertModified, grade);
                 System.out.println(student.toString());
                 daoPerson.insertPerson(student);
@@ -76,6 +88,9 @@ public class TerminalView {
             else
             {
                 //todo: controller function create Student
+                this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified);
+
+
                /* Person person = new Person(name, phone, date, dateInsertModified, dateInsertModified);
                 System.out.println(person.toString());
                 daoPerson.insertPerson(person);
