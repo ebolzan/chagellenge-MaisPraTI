@@ -18,7 +18,14 @@ public class DaoPerson {
 
     public Person deletePerson(int index)
     {
-        return this.listPerson.remove(index);
+        try {
+            return this.listPerson.remove(index);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     public Person getPerson(int index)
