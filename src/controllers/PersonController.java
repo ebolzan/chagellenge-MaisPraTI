@@ -1,0 +1,131 @@
+package controllers;
+
+import models.DaoPerson;
+import models.Person;
+import models.Student;
+import views.TerminalView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class PersonController {
+
+    private DaoPerson daoPerson;
+    private TerminalView terminalView;
+
+    public PersonController(DaoPerson daoPerson, TerminalView terminalView) {
+        this.daoPerson = daoPerson;
+        this.terminalView = terminalView;
+        this.terminalView.setPersonController(this);
+    }
+
+    public void init()
+    {
+        int option;
+
+        do {
+            option = this.terminalView.mainMenu();
+
+            switch (option){
+                case 1:
+                    this.terminalView.insertPerson();
+                    break;
+                case 2:
+                    this.terminalView.deletePerson(this.daoPerson);
+                    break;
+                case 3:
+                    this.terminalView.updatePerson(this.daoPerson);
+                    break;
+                case 4:
+                    this.terminalView.listAllPerson(this.daoPerson);
+                    break;
+            }
+
+        }while (option != 0);
+    }
+
+    public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified)
+    {
+        Person p = new Person(name,phone,date, dateInserted, dateInsertModified);
+        return this.daoPerson.insertPerson(p);
+    }
+
+    public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified, Float grade)
+    {
+        Student student = new Student(name,phone,date, dateInserted, dateInsertModified,grade);
+        return this.daoPerson.insertPerson(student);
+    }
+
+    public boolean deletePerson(int index)
+    {
+        Person p = this.daoPerson.deletePerson(index);
+        if( p == null) {
+            return false;
+        }
+        else
+        {
+            System.out.println(p + "deleted with success!");
+            return true;
+        }
+    }
+
+    private void updateLastchange(int indexPerson)
+    {
+        this.daoPerson.getPerson(indexPerson).setLastChangeDate(new Date());
+    }
+
+    //todo:change for boolean field
+    public void updatePerson(int indexPerson, int field, String newValue)
+    {
+        switch (field)
+        {
+            case 1:
+                this.daoPerson.getPerson(indexPerson).setName(newValue);
+                updateLastchange(indexPerson);
+                break;
+
+            case 2:
+                this.daoPerson.getPerson(indexPerson).setPhone(newValue);
+                updateLastchange(indexPerson);
+                break;
+
+            case 3:
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    Date date = formatter.parse(newValue);
+                    this.daoPerson.getPerson(indexPerson).setBirthDate(new Date(newValue));
+                    updateLastchange(indexPerson);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+
+            case 4:
+                Float grade = Float.parseFloat(newValue);
+                Person student = this.daoPerson.getPerson(indexPerson);
+                if(student instanceof Student){
+                    ((Student)student).setFinalGrade(grade);
+                    updateLastchange(indexPerson);
+                }
+                break;
+        }
+    }
+
+    public DaoPerson getDaoPerson() {
+        return daoPerson;
+    }
+
+    public void setDaoPerson(DaoPerson daoPerson) {
+        this.daoPerson = daoPerson;
+    }
+
+    public TerminalView getTerminalView() {
+        return terminalView;
+    }
+
+    public void setTerminalView(TerminalView terminalView) {
+        this.terminalView = terminalView;
+    }
+}

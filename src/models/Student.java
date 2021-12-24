@@ -20,8 +20,6 @@ public class Student extends Person {
         this.finalGrade = grade;
     }
 
-
-
     @Override
     public String toString() {
         return "Student{" +
