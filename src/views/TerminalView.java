@@ -51,7 +51,6 @@ public class TerminalView {
         }
 
         return option;
-
     }
 
     public void insertPerson()
@@ -125,13 +124,11 @@ public class TerminalView {
             {
                 return 1;
             }
-
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
 
         return 0;
     }
@@ -163,7 +160,5 @@ public class TerminalView {
         {
             e.printStackTrace();
         }
-
     }
-
 }
