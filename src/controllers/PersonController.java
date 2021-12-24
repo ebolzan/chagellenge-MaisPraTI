@@ -74,17 +74,24 @@ public class PersonController {
         }
     }
 
+    private void updateLastchange(int indexPerson)
+    {
+        this.daoPerson.getPerson(indexPerson).setLastChangeDate(new Date());
+    }
+
     public void updatePerson(int indexPerson, int field, String newValue)
     {
         switch (field)
         {
             case 1:
                 this.daoPerson.getPerson(indexPerson).setName(newValue);
+                updateLastchange(indexPerson);
 
                 break;
 
             case 2:
                 this.daoPerson.getPerson(indexPerson).setPhone(newValue);
+                updateLastchange(indexPerson);
                 break;
 
             case 3:
@@ -93,6 +100,7 @@ public class PersonController {
                 try {
                     Date date = formatter.parse(newValue);
                     this.daoPerson.getPerson(indexPerson).setBirthDate(new Date(newValue));
+                    updateLastchange(indexPerson);
                 }
                 catch (Exception e)
                 {
@@ -106,6 +114,7 @@ public class PersonController {
                 Person student = this.daoPerson.getPerson(indexPerson);
                 if(student instanceof Student){
                     ((Student)student).setFinalGrade(grade);
+                    updateLastchange(indexPerson);
                 }
 
                 break;
