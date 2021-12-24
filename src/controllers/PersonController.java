@@ -5,9 +5,11 @@ import models.Person;
 import models.Student;
 import views.TerminalView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PersonController {
+
 
     private DaoPerson daoPerson;
     private TerminalView terminalView;
@@ -72,6 +74,47 @@ public class PersonController {
         }
     }
 
+    public void updatePerson(int indexPerson, int field, String newValue)
+    {
+        switch (field)
+        {
+            case 1:
+                this.daoPerson.getPerson(indexPerson).setName(newValue);
+
+                break;
+
+            case 2:
+                this.daoPerson.getPerson(indexPerson).setPhone(newValue);
+                break;
+
+            case 3:
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    Date date = formatter.parse(newValue);
+                    this.daoPerson.getPerson(indexPerson).setBirthDate(new Date(newValue));
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                break;
+
+            case 4:
+
+                Float grade = Float.parseFloat(newValue);
+                Person student = this.daoPerson.getPerson(indexPerson);
+                if(student instanceof Student){
+                    ((Student)student).setFinalGrade(grade);
+                }
+
+                break;
+
+        }
+
+
+
+    }
 
 
 
