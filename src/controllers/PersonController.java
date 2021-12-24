@@ -15,6 +15,7 @@ public class PersonController {
     public PersonController(DaoPerson daoPerson, TerminalView terminalView) {
         this.daoPerson = daoPerson;
         this.terminalView = terminalView;
+        this.terminalView.setPersonController(this);
     }
 
     public void init()
