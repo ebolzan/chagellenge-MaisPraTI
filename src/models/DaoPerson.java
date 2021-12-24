@@ -25,7 +25,6 @@ public class DaoPerson {
             e.printStackTrace();
             return null;
         }
-
     }
 
     public Person getPerson(int index)
@@ -41,7 +40,7 @@ public class DaoPerson {
     {
         if(this.listPerson.isEmpty())
         {
-            System.out.println("D'ont exists nothing person's save in database");
+            System.out.println("Don't exists nothing person's save in database");
             return;
         }
 
