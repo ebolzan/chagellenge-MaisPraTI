@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class PersonController {
 
-
     private DaoPerson daoPerson;
     private TerminalView terminalView;
 
@@ -43,22 +42,18 @@ public class PersonController {
             }
 
         }while (option != 0);
-
     }
 
     public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified)
     {
         Person p = new Person(name,phone,date, dateInserted, dateInsertModified);
-
         return this.daoPerson.insertPerson(p);
     }
 
     public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified, Float grade)
     {
         Student student = new Student(name,phone,date, dateInserted, dateInsertModified,grade);
-
         return this.daoPerson.insertPerson(student);
-
     }
 
     public boolean deletePerson(int index)
@@ -79,6 +74,7 @@ public class PersonController {
         this.daoPerson.getPerson(indexPerson).setLastChangeDate(new Date());
     }
 
+    //todo:change for boolean field
     public void updatePerson(int indexPerson, int field, String newValue)
     {
         switch (field)
@@ -86,7 +82,6 @@ public class PersonController {
             case 1:
                 this.daoPerson.getPerson(indexPerson).setName(newValue);
                 updateLastchange(indexPerson);
-
                 break;
 
             case 2:
@@ -95,7 +90,6 @@ public class PersonController {
                 break;
 
             case 3:
-
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 try {
                     Date date = formatter.parse(newValue);
@@ -109,23 +103,15 @@ public class PersonController {
                 break;
 
             case 4:
-
                 Float grade = Float.parseFloat(newValue);
                 Person student = this.daoPerson.getPerson(indexPerson);
                 if(student instanceof Student){
                     ((Student)student).setFinalGrade(grade);
                     updateLastchange(indexPerson);
                 }
-
                 break;
-
         }
-
-
-
     }
-
-
 
     public DaoPerson getDaoPerson() {
         return daoPerson;
