@@ -58,6 +58,19 @@ public class PersonController {
 
     }
 
+    public boolean deletePerson(int index)
+    {
+        Person p = this.daoPerson.deletePerson(index);
+        if( p == null) {
+            return false;
+        }
+        else
+        {
+            System.out.println(p + "deleted with success!");
+            return true;
+        }
+    }
+
 
 
 
