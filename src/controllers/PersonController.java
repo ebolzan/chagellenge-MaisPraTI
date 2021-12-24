@@ -13,6 +13,32 @@ public class PersonController {
         this.terminalView = terminalView;
     }
 
+    public void init()
+    {
+        int option;
+
+        do {
+            option = this.terminalView.mainMenu();
+
+            switch (option){
+                case 1:
+                    this.terminalView.insertPerson();
+                    break;
+                case 2:
+                    this.terminalView.deletePerson(this.daoPerson);
+                    break;
+                case 3:
+                    this.terminalView.updatePerson(this.daoPerson);
+                    break;
+                case 4:
+                    this.terminalView.listAllPerson(this.daoPerson);
+                    break;
+            }
+
+        }while (option != 0);
+
+    }
+
     public DaoPerson getDaoPerson() {
         return daoPerson;
     }
