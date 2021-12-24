@@ -12,4 +12,20 @@ public class PersonController {
         this.daoPerson = daoPerson;
         this.terminalView = terminalView;
     }
+
+    public DaoPerson getDaoPerson() {
+        return daoPerson;
+    }
+
+    public void setDaoPerson(DaoPerson daoPerson) {
+        this.daoPerson = daoPerson;
+    }
+
+    public TerminalView getTerminalView() {
+        return terminalView;
+    }
+
+    public void setTerminalView(TerminalView terminalView) {
+        this.terminalView = terminalView;
+    }
 }
