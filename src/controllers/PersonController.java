@@ -1,7 +1,11 @@
 package controllers;
 
 import models.DaoPerson;
+import models.Person;
+import models.Student;
 import views.TerminalView;
+
+import java.util.Date;
 
 public class PersonController {
 
@@ -38,6 +42,24 @@ public class PersonController {
         }while (option != 0);
 
     }
+
+    public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified)
+    {
+        Person p = new Person(name,phone,date, dateInserted, dateInsertModified);
+
+        return this.daoPerson.insertPerson(p);
+    }
+
+    public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified, Float grade)
+    {
+        Student student = new Student(name,phone,date, dateInserted, dateInsertModified,grade);
+
+        return this.daoPerson.insertPerson(student);
+
+    }
+
+
+
 
     public DaoPerson getDaoPerson() {
         return daoPerson;
