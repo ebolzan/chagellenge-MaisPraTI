@@ -26,38 +26,4 @@ public class Main {
 
     }
 
-    private static void updatePerson(int idField, Person p) throws IOException, IOException, ParseException {
-        Scanner in = new Scanner(System.in);
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        switch (idField){
-            case 1:
-                System.out.println("Type new name:");
-                String name = br.readLine();
-                p.setName(name);
-                break;
-            case 2:
-                System.out.println("Type new phone:");
-                String phone = br.readLine();
-                p.setPhone(phone);
-                break;
-            case 3:
-                System.out.println("Type new birthday (dd-mm-yyyy):");
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                String birthDay = br.readLine();
-                Date date = formatter.parse(birthDay);
-                p.setBirthDate(date);
-                break;
-            case 4:
-                System.out.println("Type new grade final:");
-                Float grade = Float.parseFloat(br.readLine());
-
-                if(p instanceof Student){
-                    ((Student)p).setFinalGrade(grade);
-                }
-                break;
-            default:
-                p.setLastChangeDate(new Date());
-        }
-    }
 }
