@@ -26,15 +26,6 @@ public class Main {
 
     }
 
-    private static void mainMenu() {
-        System.out.println("----------Insert Person or Student----------");
-        System.out.println("1 - Insert Person or Student");
-        System.out.println("2 - Delete Person or Student");
-        System.out.println("3 - Update Person or Student");
-        System.out.println("4 - List all Person or Student");
-        System.out.println("0 - Exit");
-    }
-
     private static void updatePerson(int idField, Person p) throws IOException, IOException, ParseException {
         Scanner in = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
