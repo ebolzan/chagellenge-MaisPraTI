@@ -77,13 +77,13 @@ public class TerminalView {
                 System.out.println("Enter grade");
                 float grade = Float.parseFloat(this.bufferedReader.readLine());
 
-                this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified, grade);
-                System.out.println("Student saved with success!");
+                if (this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified, grade))
+                    System.out.println("Student saved with success!");
             }
             else
             {
-                this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified);
-                System.out.println("Person saved with success!");
+                if (this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified))
+                    System.out.println("Person saved with success!");
             }
         }
         catch (Exception e)
@@ -108,12 +108,12 @@ public class TerminalView {
         }
     }
 
-    public int deletePerson(DaoPerson p)
+    public void deletePerson(DaoPerson p)
     {
         this.listAllPerson(p);
 
         if(p.getListPerson().isEmpty())
-            return 1;
+            return;
 
         System.out.println("Choose index option for delete:");
 
@@ -122,15 +122,13 @@ public class TerminalView {
 
             if(this.personController.deletePerson(Integer.parseInt(opt)))
             {
-                return 1;
+                System.out.println("Person deleted with success!");
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-        return 0;
     }
 
     public void updatePerson(DaoPerson p)
@@ -153,7 +151,8 @@ public class TerminalView {
             int editField = Integer.parseInt(this.bufferedReader.readLine());
             System.out.println("New value:");
             String newValue = this.bufferedReader.readLine();
-            this.personController.updatePerson(index, editField, newValue);
+            if(this.personController.updatePerson(index, editField, newValue))
+                System.out.println("Person update with success!");
 
         }
         catch (Exception e)

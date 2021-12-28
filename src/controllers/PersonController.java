@@ -74,19 +74,22 @@ public class PersonController {
         this.daoPerson.getPerson(indexPerson).setLastChangeDate(new Date());
     }
 
-    //todo:change for boolean field
-    public void updatePerson(int indexPerson, int field, String newValue)
+    public Boolean updatePerson(int indexPerson, int field, String newValue)
     {
+        Boolean output = false;
+
         switch (field)
         {
             case 1:
                 this.daoPerson.getPerson(indexPerson).setName(newValue);
                 updateLastchange(indexPerson);
+                output = true;
                 break;
 
             case 2:
                 this.daoPerson.getPerson(indexPerson).setPhone(newValue);
                 updateLastchange(indexPerson);
+                output = true;
                 break;
 
             case 3:
@@ -95,10 +98,12 @@ public class PersonController {
                     Date date = formatter.parse(newValue);
                     this.daoPerson.getPerson(indexPerson).setBirthDate(new Date(newValue));
                     updateLastchange(indexPerson);
+                    output = true;
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
+                    output = false;
                 }
                 break;
 
@@ -108,9 +113,11 @@ public class PersonController {
                 if(student instanceof Student){
                     ((Student)student).setFinalGrade(grade);
                     updateLastchange(indexPerson);
+                    output = true;
                 }
                 break;
         }
+        return output;
     }
 
     public DaoPerson getDaoPerson() {
