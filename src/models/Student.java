@@ -25,7 +25,7 @@ public class Student extends Person {
         return "Student{" +
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDay=" + birthDay +
                 ", insertDate=" + insertDate +
                 ", lastChangeDate=" + lastChangeDate +
                 ", finalGrade=" + finalGrade +
