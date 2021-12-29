@@ -96,7 +96,7 @@ public class PersonController {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 try {
                     Date date = formatter.parse(newValue);
-                    this.daoPerson.getPerson(indexPerson).setBirthDate(new Date(newValue));
+                    this.daoPerson.getPerson(indexPerson).setBirthDay(new Date(newValue));
                     updateLastchange(indexPerson);
                     output = true;
                 }
