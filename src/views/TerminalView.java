@@ -79,11 +79,15 @@ public class TerminalView {
 
                 if (this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified, grade))
                     System.out.println("Student saved with success!");
+                else
+                    System.out.println("Error in save Student");
             }
             else
             {
                 if (this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified))
                     System.out.println("Person saved with success!");
+                else
+                    System.out.println("Error in save Person");
             }
         }
         catch (Exception e)
