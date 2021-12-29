@@ -7,14 +7,14 @@ public class Person {
 
     protected String name;
     protected String phone;
-    protected Date birthDate;
+    protected Date birthDay;
     protected Date insertDate;
     protected Date lastChangeDate;
 
     public Person(String name, String phone, Date birthDate, Date insertDate, Date lastChangeDate) {
         this.name = name;
         this.phone = phone;
-        this.birthDate = birthDate;
+        this.birthDay = birthDate;
         this.insertDate = insertDate;
         this.lastChangeDate = lastChangeDate;
     }
@@ -35,12 +35,12 @@ public class Person {
         this.phone = phone;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Date getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
     public Date getInsertDate() {
@@ -77,7 +77,7 @@ public class Person {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDay=" + birthDay +
                 ", insertDate=" + insertDate +
                 ", lastChangeDate=" + lastChangeDate +
                 '}';

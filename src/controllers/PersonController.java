@@ -53,6 +53,10 @@ public class PersonController {
     public boolean insertPerson(String name, String phone, Date date, Date dateInserted, Date dateInsertModified, Float grade)
     {
         Student student = new Student(name,phone,date, dateInserted, dateInsertModified,grade);
+
+        if (student.getFinalGrade() == null)
+            return false;
+
         return this.daoPerson.insertPerson(student);
     }
 
@@ -96,7 +100,7 @@ public class PersonController {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 try {
                     Date date = formatter.parse(newValue);
-                    this.daoPerson.getPerson(indexPerson).setBirthDate(new Date(newValue));
+                    this.daoPerson.getPerson(indexPerson).setBirthDay(new Date(newValue));
                     updateLastchange(indexPerson);
                     output = true;
                 }
@@ -111,9 +115,16 @@ public class PersonController {
                 Float grade = Float.parseFloat(newValue);
                 Person student = this.daoPerson.getPerson(indexPerson);
                 if(student instanceof Student){
-                    ((Student)student).setFinalGrade(grade);
-                    updateLastchange(indexPerson);
-                    output = true;
+                    try {
+                        ((Student)student).setFinalGrade(grade);
+                        updateLastchange(indexPerson);
+                        output = true;
+                    }
+                    catch (Exception e)
+                    {
+                        e.getMessage();
+                        output = false;
+                    }
                 }
                 break;
         }
