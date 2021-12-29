@@ -74,7 +74,7 @@ public class TerminalView {
 
             if(haveGrade.contains("y"))
             {
-                System.out.println("Enter grade");
+                System.out.println("Enter grade: 0.0 - 10.0:");
                 float grade = Float.parseFloat(this.bufferedReader.readLine());
 
                 if (this.personController.insertPerson(name, phone, date, dateInsertModified, dateInsertModified, grade))
