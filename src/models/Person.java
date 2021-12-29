@@ -39,8 +39,8 @@ public class Person {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDay(Date birthDay) {
+        this.birthDate = birthDay;
     }
 
     public Date getInsertDate() {
