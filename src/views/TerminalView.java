@@ -104,6 +104,9 @@ public class TerminalView {
             return;
         }
 
+        System.out.println("| Name             | Phone           | Birthday | Insert Date | Last change | FinalGrade |");
+        System.out.println("|------------------|-----------------|----------|-------------|-------------|------------|");
+
         int it = 0;
         for(Person person: p.getListPerson())
         {
