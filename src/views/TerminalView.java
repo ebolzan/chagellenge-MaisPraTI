@@ -173,7 +173,7 @@ public class TerminalView {
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("\n"+e.getMessage());
         }
     }
 
