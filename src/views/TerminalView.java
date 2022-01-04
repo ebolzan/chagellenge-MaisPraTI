@@ -128,7 +128,7 @@ public class TerminalView {
             System.out.print("|"+person.getPhone());
             System.out.print(space);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date birthDay = person.getBirthDay();
             System.out.print("|"+dateFormat.format(birthDay)+" ");
 
@@ -141,13 +141,17 @@ public class TerminalView {
             if (person instanceof Student)
             {
                 Float finalGrade = ((Student) person).getFinalGrade();
-                System.out.print("|"+finalGrade+"         |");
+                System.out.println("|"+finalGrade+"         |");
             }
             else
             {
-                System.out.print("|Person      |");
+                System.out.println("|Person      |");
             }
+
+            it++;
         }
+        System.out.println("|----|------------------|-----------------|-----------|-------------|-------------|" +
+                "------------|");
     }
 
     public void deletePerson(DaoPerson p)
