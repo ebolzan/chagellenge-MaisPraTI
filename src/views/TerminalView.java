@@ -3,6 +3,7 @@ package views;
 import controllers.PersonController;
 import models.DaoPerson;
 import models.Person;
+import models.Student;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -104,11 +105,48 @@ public class TerminalView {
             return;
         }
 
-        int it = 0;
+        System.out.println("| id | Name             | Phone           | Birthday  | Insert Date | Last change | FinalGrade |");
+        System.out.println("|----|------------------|-----------------|-----------|-------------|-------------|------------|");
+
+        Integer it = 0;
         for(Person person: p.getListPerson())
         {
-            System.out.println(it+"--"+person);
-            it++;
+            int spaceId    = 4 - String.valueOf(it).length();
+            int spaceName  = 18 - person.getName().length();
+            int spacePhone = 17 - person.getPhone().length();
+
+            String space = String.format("%"+  spaceId +"s", " ");
+
+            System.out.print("|"+it);
+            System.out.print(space);
+
+            space = String.format("%"+  spaceName +"s", " ");
+            System.out.print("|"+person.getName());
+            System.out.print(space);
+
+            space = String.format("%"+  spacePhone +"s", " ");
+            System.out.print("|"+person.getPhone());
+            System.out.print(space);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date birthDay = person.getBirthDay();
+            System.out.print("|"+dateFormat.format(birthDay)+" ");
+
+            Date insertDate = person.getInsertDate();
+            System.out.print("|"+dateFormat.format(insertDate)+"   ");
+
+            Date insertLastChange = person.getLastChangeDate();
+            System.out.print("|"+dateFormat.format(insertLastChange)+"   ");
+
+            if (person instanceof Student)
+            {
+                Float finalGrade = ((Student) person).getFinalGrade();
+                System.out.print("|"+finalGrade+"         |");
+            }
+            else
+            {
+                System.out.print("|Person      |");
+            }
         }
     }
 
