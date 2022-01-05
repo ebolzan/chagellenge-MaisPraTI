@@ -36,6 +36,7 @@ public class TerminalView {
 
     public int mainMenu()
     {
+        //method shows menu program
         System.out.println("----------Insert Person or Student----------");
         System.out.println("1 - Insert Person or Student");
         System.out.println("2 - Delete Person or Student");
@@ -76,6 +77,7 @@ public class TerminalView {
             System.out.println("Does he have final Grade? (y:n)");
             String haveGrade = this.bufferedReader.readLine();
 
+            //if has final grade, he is a student and must put a value
             if(haveGrade.contains("y"))
             {
                 System.out.println("Enter grade: 0.0 - 10.0:");
@@ -190,12 +192,14 @@ public class TerminalView {
             String opt = this.bufferedReader.readLine();
             int index = Integer.parseInt(opt);
 
-            System.out.print("1- Edit name 2 - Edit phone 3 - Edit birthday");
+            System.out.print("1-Edit name 2-Edit phone 3-Edit birthday");
 
             if(p.getPerson(index).getClass().getSimpleName().contains("Student"))
             {
-                System.out.print(" 4 - Grade Final");
+                System.out.print(" 4-Grade Final");
             }
+
+            System.out.println("");
 
             int editField = Integer.parseInt(this.bufferedReader.readLine());
             System.out.println("New value:");
