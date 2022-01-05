@@ -34,7 +34,7 @@ public class DaoPerson {
     {
         if(this.listPerson.isEmpty())
         {
-            System.out.println("Don't exists nothing person's save in database");
+            System.out.println("There is no person saved in the database.");
             return;
         }
 
