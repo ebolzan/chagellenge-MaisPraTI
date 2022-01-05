@@ -104,7 +104,7 @@ public class TerminalView {
     {
         if(p.getListPerson().isEmpty())
         {
-            System.out.println("D'ont exists nothing person's save in database");
+            System.out.println("There is no person saved in the database.");
             return;
         }
 
