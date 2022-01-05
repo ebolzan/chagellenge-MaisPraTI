@@ -14,6 +14,9 @@ import java.util.Scanner;
 public class TerminalView {
 
     private PersonController personController;
+    private static final int SPACE_ID = 4;
+    private static final int SPACE_NAME = 18;
+    private static final int SPACE_PHONE = 17;
 
     private BufferedReader bufferedReader;
 
@@ -111,9 +114,9 @@ public class TerminalView {
         Integer it = 0;
         for(Person person: p.getListPerson())
         {
-            int spaceId    = 4 - String.valueOf(it).length();
-            int spaceName  = 18 - person.getName().length();
-            int spacePhone = 17 - person.getPhone().length();
+            int spaceId    = SPACE_ID - String.valueOf(it).length();
+            int spaceName  = SPACE_NAME - person.getName().length();
+            int spacePhone = SPACE_PHONE - person.getPhone().length();
 
             String space = String.format("%"+  spaceId +"s", " ");
 
