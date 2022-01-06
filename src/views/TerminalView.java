@@ -14,6 +14,9 @@ import java.util.Scanner;
 public class TerminalView {
 
     private PersonController personController;
+    private static final int SPACE_ID = 4;
+    private static final int SPACE_NAME = 18;
+    private static final int SPACE_PHONE = 17;
 
     private BufferedReader bufferedReader;
 
@@ -33,6 +36,7 @@ public class TerminalView {
 
     public int mainMenu()
     {
+        //method shows menu program
         System.out.println("----------Insert Person or Student----------");
         System.out.println("1 - Insert Person or Student");
         System.out.println("2 - Delete Person or Student");
@@ -73,6 +77,7 @@ public class TerminalView {
             System.out.println("Does he have final Grade? (y:n)");
             String haveGrade = this.bufferedReader.readLine();
 
+            //if has final grade, he is a student and must put a value
             if(haveGrade.contains("y"))
             {
                 System.out.println("Enter grade: 0.0 - 10.0:");
@@ -101,7 +106,7 @@ public class TerminalView {
     {
         if(p.getListPerson().isEmpty())
         {
-            System.out.println("D'ont exists nothing person's save in database");
+            System.out.println("There is no person saved in the database.");
             return;
         }
 
@@ -111,9 +116,9 @@ public class TerminalView {
         Integer it = 0;
         for(Person person: p.getListPerson())
         {
-            int spaceId    = 4 - String.valueOf(it).length();
-            int spaceName  = 18 - person.getName().length();
-            int spacePhone = 17 - person.getPhone().length();
+            int spaceId    = SPACE_ID - String.valueOf(it).length();
+            int spaceName  = SPACE_NAME - person.getName().length();
+            int spacePhone = SPACE_PHONE - person.getPhone().length();
 
             String space = String.format("%"+  spaceId +"s", " ");
 
@@ -128,7 +133,7 @@ public class TerminalView {
             System.out.print("|"+person.getPhone());
             System.out.print(space);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date birthDay = person.getBirthDay();
             System.out.print("|"+dateFormat.format(birthDay)+" ");
 
@@ -141,13 +146,17 @@ public class TerminalView {
             if (person instanceof Student)
             {
                 Float finalGrade = ((Student) person).getFinalGrade();
-                System.out.print("|"+finalGrade+"         |");
+                System.out.println("|"+finalGrade+"         |");
             }
             else
             {
-                System.out.print("|Person      |");
+                System.out.println("|Person      |");
             }
+
+            it++;
         }
+        System.out.println("|----|------------------|-----------------|-----------|-------------|-------------|" +
+                "------------|");
     }
 
     public void deletePerson(DaoPerson p)
@@ -169,7 +178,7 @@ public class TerminalView {
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("\n"+e.getMessage());
         }
     }
 
@@ -183,12 +192,14 @@ public class TerminalView {
             String opt = this.bufferedReader.readLine();
             int index = Integer.parseInt(opt);
 
-            System.out.print("1- Edit name 2 - Edit phone 3 - Edit birthday");
+            System.out.print("1-Edit name 2-Edit phone 3-Edit birthday");
 
             if(p.getPerson(index).getClass().getSimpleName().contains("Student"))
             {
-                System.out.print(" 4 - Grade Final");
+                System.out.print(" 4-Grade Final");
             }
+
+            System.out.println("");
 
             int editField = Integer.parseInt(this.bufferedReader.readLine());
             System.out.println("New value:");
@@ -199,7 +210,7 @@ public class TerminalView {
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("\n"+e.getMessage());
         }
     }
 }

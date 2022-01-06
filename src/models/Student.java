@@ -27,6 +27,7 @@ public class Student extends Person {
         int zeroValue = Float.compare(grade,0.f);//zerovalue >=0
         int tenValue = Float.compare(grade,10.f);//tenvalue <=0
 
+        //Value has to be between 0 and 10
         if(zeroValue >= 0 && tenValue <= 0)
             this.finalGrade = grade;
         else

@@ -18,13 +18,7 @@ public class DaoPerson {
 
     public Person deletePerson(int index)
     {
-        try {
             return this.listPerson.remove(index);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public Person getPerson(int index)
@@ -40,7 +34,7 @@ public class DaoPerson {
     {
         if(this.listPerson.isEmpty())
         {
-            System.out.println("Don't exists nothing person's save in database");
+            System.out.println("There is no person saved in the database.");
             return;
         }
 

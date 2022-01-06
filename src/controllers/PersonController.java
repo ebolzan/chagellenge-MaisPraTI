@@ -19,6 +19,7 @@ public class PersonController {
         this.terminalView.setPersonController(this);
     }
 
+    //Method shows all menu
     public void init()
     {
         int option;
